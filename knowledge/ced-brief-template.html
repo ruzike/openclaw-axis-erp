@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>AXIS Studio — Бриф CED GROUP</title>
+<style>
+  body { font-family: 'Arial', sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; color: #333; }
+  h1 { color: #1a1a2e; border-bottom: 3px solid #e94560; padding-bottom: 10px; }
+  h2 { color: #16213e; margin-top: 30px; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .section { background: #f8f9fa; border-left: 4px solid #e94560; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+  label { display: block; font-weight: bold; margin-bottom: 5px; color: #16213e; }
+  input[type="text"], input[type="date"], textarea, select {
+    width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;
+    font-size: 14px; margin-bottom: 12px; box-sizing: border-box;
+  }
+  textarea { height: 80px; resize: vertical; }
+  .priority-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 10px 0; }
+  .priority-card { border: 2px solid #ddd; border-radius: 8px; padding: 12px; cursor: pointer; text-align: center; }
+  .priority-card:hover { border-color: #e94560; background: #fff0f3; }
+  .priority-card input { margin-bottom: 5px; }
+  .priority-card span { font-weight: bold; display: block; }
+  .priority-card small { color: #666; font-size: 12px; }
+  .stakeholder-table { width: 100%; border-collapse: collapse; }
+  .stakeholder-table th { background: #1a1a2e; color: white; padding: 8px 12px; text-align: left; }
+  .stakeholder-table td { border: 1px solid #ddd; padding: 8px 12px; }
+  .stakeholder-table tr:nth-child(even) { background: #f8f9fa; }
+  .footer { margin-top: 40px; border-top: 1px solid #ddd; padding-top: 15px; color: #666; font-size: 12px; }
+  .signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+  .signature-box { border-top: 1px solid #333; padding-top: 5px; font-size: 12px; color: #666; }
+  @media print {
+    body { margin: 20px; }
+    input, textarea, select { border: none; border-bottom: 1px solid #333; border-radius: 0; background: transparent; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📋 БРИФ ПРОЕКТА — AXIS Studio × CED GROUP</h1>
+<p style="color:#666; font-size:13px;">Документ заполняется до старта работ. Является основанием для расчёта бюджета и сроков.</p>
+
+<!-- БЛОК 1: ИНФОРМАЦИЯ О ПРОЕКТЕ -->
+<h2>1. Информация о проекте</h2>
+<div class="section">
+  <label>Название объекта / проекта:</label>
+  <input type="text" placeholder="Например: ЖК Токио — холл 1 этажа">
+
+  <label>Тип проекта:</label>
+  <select>
+    <option>Визуализация (C1/C2)</option>
+    <option>Рабочий проект (C3)</option>
+    <option>Авторский надзор (C5)</option>
+    <option>Комплекс: Визуализация + РП</option>
+  </select>
+
+  <label>Дата брифинга:</label>
+  <input type="date">
+
+  <label>Желаемый срок сдачи:</label>
+  <input type="date">
+</div>
+
+<!-- БЛОК 2: СТЕЙКХОЛДЕРЫ -->
+<h2>2. Стейкхолдеры проекта</h2>
+<div class="section">
+  <table class="stakeholder-table">
+    <tr>
+      <th>Роль</th>
+      <th>ФИО</th>
+      <th>Контакт</th>
+      <th>Участие в согласовании</th>
+    </tr>
+    <tr>
+      <td>Главный ЛПР (финальное решение)</td>
+      <td><input type="text" placeholder="Даулет Дулатович"></td>
+      <td><input type="text" placeholder="+7..."></td>
+      <td><input type="text" placeholder="Этап итогового согласования"></td>
+    </tr>
+    <tr>
+      <td>Маркетолог</td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text" placeholder="Этап концепции"></td>
+    </tr>
+    <tr>
+      <td>Технический директор</td>
+      <td><input type="text"></td>
+      <td><input type="text"></td>
+      <td><input type="text" placeholder="Этап РП"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- БЛОК 3: ПРИОРИТЕТ ПРОЕКТА -->
+<h2>3. Доминирующий приоритет (выбрать один)</h2>
+<div class="section">
+  <p style="color:#666; font-size:13px; margin-top:0">⚠️ Важно: выбирается один приоритет. Он определяет, каким будет финальный результат при конфликте требований.</p>
+  <div class="priority-grid">
+    <div class="priority-card">
+      <input type="radio" name="priority" value="marketing">
+      <span>🎯 Маркетинг</span>
+      <small>Красиво, для продаж квартир/помещений</small>
+    </div>
+    <div class="priority-card">
+      <input type="radio" name="priority" value="status">
+      <span>👑 Статус</span>
+      <small>Имидж компании, представительский уровень</small>
+    </div>
+    <div class="priority-card">
+      <input type="radio" name="priority" value="technical">
+      <span>🔧 Техническое</span>
+      <small>Реализуемо, в бюджете, для строительства</small>
+    </div>
+  </div>
+
+  <label style="margin-top:15px">Комментарий к приоритету:</label>
+  <textarea placeholder="Что именно важнее всего для этого конкретного проекта?"></textarea>
+</div>
+
+<!-- БЛОК 4: ПАКЕТ УСЛУГ -->
+<h2>4. Базовый пакет услуг</h2>
+<div class="section">
+  <select>
+    <option>Пакет A — "Маркетинг": экстерьер + интерьер шоурум (14 р.д.)</option>
+    <option>Пакет B — "Статус": концепция + презентационный альбом (21 р.д.)</option>
+    <option>Пакет C — "Техническое": РП + спецификации + чертежи</option>
+    <option>Индивидуальный (описать в ТЗ)</option>
+  </select>
+
+  <label>Состав работ / ТЗ:</label>
+  <textarea placeholder="Перечислите конкретный состав: количество ракурсов, помещения, этажи, особые требования..."></textarea>
+
+  <label>Площадь объекта (кв.м.):</label>
+  <input type="text" placeholder="Например: 450 кв.м.">
+</div>
+
+<!-- БЛОК 5: БЮДЖЕТ И УСЛОВИЯ -->
+<h2>5. Бюджет и условия</h2>
+<div class="section">
+  <label>Бюджет (тенге):</label>
+  <input type="text" placeholder="Согласованная сумма">
+
+  <label>Условия оплаты:</label>
+  <select>
+    <option>50% предоплата / 50% по факту</option>
+    <option>100% предоплата</option>
+    <option>По этапам (указать в договоре)</option>
+    <option>Бартер (согласовать с Finance)</option>
+  </select>
+
+  <label>Штрафные санкции за правки сверх нормы:</label>
+  <textarea placeholder="Например: 2 раунда правок включены. Каждый последующий — +15% от стоимости этапа."></textarea>
+</div>
+
+<!-- БЛОК 6: РЕФЕРЕНСЫ И МАТЕРИАЛЫ -->
+<h2>6. Референсы и исходные материалы</h2>
+<div class="section">
+  <label>Ссылки на референсы (Pinterest, Behance, etc.):</label>
+  <textarea placeholder="https://..."></textarea>
+
+  <label>Исходные материалы (DWG, PDF планировок и т.д.):</label>
+  <textarea placeholder="Ссылки на Google Drive / Dropbox / перечень файлов переданных на старте"></textarea>
+
+  <label>Особые пожелания / ограничения:</label>
+  <textarea placeholder="Фирменные цвета, запрещённые элементы, обязательные требования..."></textarea>
+</div>
+
+<!-- ПОДПИСИ -->
+<div class="footer">
+  <p><strong>Документ согласован и является основанием для начала работ.</strong><br>
+  Изменения в объёме или приоритетах после подписания фиксируются отдельным дополнением.</p>
+  <div class="signature-row">
+    <div>
+      <div class="signature-box">Подпись клиента (CED GROUP): _____________</div>
+      <p>ФИО: _________________________ Дата: _________</p>
+    </div>
+    <div>
+      <div class="signature-box">Подпись AXIS Studio: _____________</div>
+      <p>ФИО: _________________________ Дата: _________</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

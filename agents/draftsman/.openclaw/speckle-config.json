@@ -1,0 +1,6 @@
+{
+  "server": "https://app.speckle.systems",
+  "graphql_url": "https://app.speckle.systems/graphql",
+  "token_file": "/home/axis/openclaw/agents/draftsman/.openclaw/speckle-token.txt",
+  "scripts_dir": "/home/axis/.nvm/versions/node/v22.22.0/lib/node_modules/openclaw/skills/speckle-integration/tools"
+}

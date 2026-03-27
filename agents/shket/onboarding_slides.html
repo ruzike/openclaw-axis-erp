@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXIS — Инструкция для команды</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0f; color: #e8e8e8; }
+
+.slide {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.slide:nth-child(odd) { background: #0a0a0f; }
+.slide:nth-child(even) { background: #0f0f18; }
+
+.slide-number {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 14px;
+  color: #555;
+}
+
+.emoji-big { font-size: 64px; margin-bottom: 24px; }
+.title { font-size: 42px; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+.subtitle { font-size: 22px; color: #aaa; margin-bottom: 32px; max-width: 700px; }
+
+.highlight { color: #4ecdc4; }
+.highlight-orange { color: #ff9f43; }
+.highlight-green { color: #2ed573; }
+.highlight-red { color: #ff6b6b; }
+
+.card {
+  background: #16162a;
+  border: 1px solid #2a2a4a;
+  border-radius: 16px;
+  padding: 32px 40px;
+  max-width: 600px;
+  width: 100%;
+  margin: 12px 0;
+  text-align: left;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  font-size: 17px;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #16162a;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.step-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: #4ecdc4;
+  min-width: 40px;
+}
+
+.step-text {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.arrow-down {
+  font-size: 32px;
+  color: #4ecdc4;
+  margin: 8px 0;
+}
+
+.big-number {
+  font-size: 96px;
+  font-weight: 800;
+  color: #4ecdc4;
+  line-height: 1;
+}
+
+.questions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.question {
+  background: #16162a;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.question-num { font-size: 14px; color: #4ecdc4; margin-bottom: 4px; }
+.question-text { font-size: 16px; line-height: 1.4; }
+
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  max-width: 700px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.tl-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.tl-circle.morning { background: #1a3a4a; color: #4ecdc4; }
+.tl-circle.day { background: #3a2a1a; color: #ff9f43; }
+.tl-circle.monday { background: #1a3a2a; color: #2ed573; }
+
+.tl-label { font-size: 14px; color: #888; max-width: 100px; text-align: center; }
+
+.tl-arrow {
+  font-size: 24px;
+  color: #444;
+  margin: 0 12px;
+  padding-bottom: 24px;
+}
+
+.bonus-box {
+  background: linear-gradient(135deg, #1a3a2a, #16162a);
+  border: 2px solid #2ed573;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.bonus-percent {
+  font-size: 72px;
+  font-weight: 800;
+  color: #2ed573;
+}
+
+.bonus-text {
+  font-size: 20px;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+.final-box {
+  display: flex;
+  gap: 20px;
+  max-width: 700px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.final-item {
+  background: #16162a;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  flex: 1;
+  min-width: 180px;
+  border-top: 3px solid;
+}
+
+.final-item:nth-child(1) { border-color: #4ecdc4; }
+.final-item:nth-child(2) { border-color: #ff9f43; }
+.final-item:nth-child(3) { border-color: #2ed573; }
+
+.final-emoji { font-size: 36px; margin-bottom: 8px; }
+.final-action { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.final-when { font-size: 14px; color: #888; }
+
+@media (max-width: 600px) {
+  .title { font-size: 28px; }
+  .subtitle { font-size: 18px; }
+  .questions { grid-template-columns: 1fr; }
+  .big-number { font-size: 64px; }
+  .bonus-percent { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Слайд 1: Вступление -->
+<div class="slide">
+  <div class="slide-number">1 / 6</div>
+  <div class="emoji-big">⚡</div>
+  <div class="title">Как работать в <span class="highlight">системе AXIS</span></div>
+  <div class="subtitle">3 действия в день. 2 минуты. Всё просто.</div>
+  
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-circle morning">☀️</div>
+      <div class="tl-label">Утром<br>форма</div>
+    </div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">
+      <div class="tl-circle day">📋</div>
+      <div class="tl-label">Днём<br>Trello</div>
+    </div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">
+      <div class="tl-circle monday">📊</div>
+      <div class="tl-label">Понедельник<br>план-отчёт</div>
+    </div>
+  </div>
+</div>
+
+<!-- Слайд 2: Утренний брифинг -->
+<div class="slide">
+  <div class="slide-number">2 / 6</div>
+  <div class="emoji-big">☀️</div>
+  <div class="title">Утренний брифинг</div>
+  <div class="subtitle">Каждый день до <span class="highlight">10:00</span>. Занимает <span class="highlight">30 секунд</span>.</div>
+
+  <div class="questions">
+    <div class="question">
+      <div class="question-num">Вопрос 1</div>
+      <div class="question-text">Какие задачи на сегодня?</div>
+    </div>
+    <div class="question">
+      <div class="question-num">Вопрос 2</div>
+      <div class="question-text">Что сделано вчера?</div>
+    </div>
+    <div class="question">
+      <div class="question-num">Вопрос 3</div>
+      <div class="question-text">Есть ли блокеры?</div>
+    </div>
+    <div class="question">
+      <div class="question-num">Вопрос 4</div>
+      <div class="question-text">Нужна ли помощь?</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px;">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScEALi62d5Xg5HDkHLk9gyr8s-SdjWlpOz_P2d357xwKzaNAg/viewform" 
+       target="_blank"
+       style="display: inline-block; background: #4ecdc4; color: #0a0a0f; font-size: 18px; font-weight: 700; padding: 14px 32px; border-radius: 8px; text-decoration: none;">
+      📝 Открыть форму
+    </a>
+  </div>
+</div>
+
+<!-- Слайд 3: Trello -->
+<div class="slide">
+  <div class="slide-number">3 / 6</div>
+  <div class="emoji-big">📋</div>
+  <div class="title">Trello — доска задач</div>
+  <div class="subtitle">Обновляй статус задач в течение дня</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Открой свою доску в Trello</div>
+    </div>
+    <div class="arrow-down">↓</div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Перетащи карточку в нужную колонку:<br><span class="highlight">В работе</span> → <span class="highlight-green">Готово</span></div>
+    </div>
+    <div class="arrow-down">↓</div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">Если есть проблема — напиши комментарий в карточке</div>
+    </div>
+  </div>
+</div>
+
+<!-- Слайд 4: План-отчёт -->
+<div class="slide">
+  <div class="slide-number">4 / 6</div>
+  <div class="emoji-big">📊</div>
+  <div class="title">План-отчёт</div>
+  <div class="subtitle">Каждый <span class="highlight-green">понедельник до 08:30</span></div>
+
+  <div class="card">
+    <div class="card-title">Что было на этой неделе?</div>
+    <div class="card-text">Какие задачи закрыл. Какие перенёс. Почему.</div>
+  </div>
+  <div style="font-size: 28px; color: #4ecdc4; margin: 8px 0;">↓</div>
+  <div class="card">
+    <div class="card-title">Что планирую на следующую?</div>
+    <div class="card-text">3-5 ключевых задач. Без воды, конкретно.</div>
+  </div>
+</div>
+
+<!-- Слайд 5: KPI и бонус -->
+<div class="slide">
+  <div class="slide-number">5 / 6</div>
+  <div class="emoji-big">💰</div>
+  <div class="title">KPI и бонус</div>
+  <div class="subtitle">Делаешь 3 действия каждый день — получаешь бонус</div>
+
+  <div class="bonus-box">
+    <div class="bonus-percent">+10%</div>
+    <div class="bonus-text">к зарплате за 100% выполнение</div>
+  </div>
+
+  <div style="margin-top: 24px; max-width: 500px;">
+    <div class="card" style="border-color: #2ed573;">
+      <div class="card-text" style="text-align: center;">
+        ✅ Утренняя форма — каждый день<br>
+        ✅ Trello — обновлён<br>
+        ✅ План-отчёт — в понедельник<br>
+        <br>
+        <span class="highlight-green" style="font-weight: 700;">= полный бонус</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Слайд 6: Итог -->
+<div class="slide">
+  <div class="slide-number">6 / 6</div>
+  <div class="emoji-big">🎯</div>
+  <div class="title">Запомни <span class="highlight">3 действия</span></div>
+  <div class="subtitle">Это всё, что нужно делать. Каждый день.</div>
+
+  <div class="final-box">
+    <div class="final-item">
+      <div class="final-emoji">☀️</div>
+      <div class="final-action">Форма</div>
+      <div class="final-when">Утром до 10:00</div>
+    </div>
+    <div class="final-item">
+      <div class="final-emoji">📋</div>
+      <div class="final-action">Trello</div>
+      <div class="final-when">В течение дня</div>
+    </div>
+    <div class="final-item">
+      <div class="final-emoji">📊</div>
+      <div class="final-action">План-отчёт</div>
+      <div class="final-when">Понедельник 08:30</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; font-size: 20px; color: #888;">
+    2 минуты в день → <span class="highlight-green" style="font-weight: 700;">+10% к зарплате</span>
+  </div>
+</div>
+
+</body>
+</html>

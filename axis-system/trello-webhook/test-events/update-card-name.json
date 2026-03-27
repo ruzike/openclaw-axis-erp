@@ -1,0 +1,32 @@
+{
+  "action": {
+    "id": "test123456792",
+    "idMemberCreator": "69784343f3d43b670c56e76d",
+    "type": "updateCard",
+    "date": "2026-03-02T05:03:00.000Z",
+    "data": {
+      "card": {
+        "id": "card-xyz-123",
+        "name": "ЖК ТОКИО: ✅ Визуализации готовы",
+        "idShort": 42
+      },
+      "old": {
+        "name": "ЖК ТОКИО: Разработать визуализации"
+      },
+      "board": {
+        "id": "697ea1c3b95f7266bd54f96b",
+        "name": "C1 C2 — Концепция и Визуализация",
+        "shortLink": "7ByHOqVf"
+      }
+    },
+    "memberCreator": {
+      "id": "69784343f3d43b670c56e76d",
+      "username": "miras31",
+      "fullName": "Miras"
+    }
+  },
+  "model": {
+    "id": "697ea1c3b95f7266bd54f96b",
+    "name": "C1 C2 — Концепция и Визуализация"
+  }
+}

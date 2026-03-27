@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>AXIS Automation Dashboard</title>
+<style>
+:root {
+    --bg: #0f1117;
+    --card: #1a1d28;
+    --border: #2a2d3a;
+    --text: #e0e0e0;
+    --text-dim: #8b8fa3;
+    --accent: #6366f1;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --blue: #3b82f6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    font-family: 'Inter', -apple-system, sans-serif; 
+    background: var(--bg); 
+    color: var(--text);
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+.header h1 { font-size: 24px; font-weight: 700; }
+.header .time { color: var(--text-dim); font-size: 14px; }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+.stat .number { font-size: 32px; font-weight: 700; }
+.stat .label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+.stat.green .number { color: var(--green); }
+.stat.red .number { color: var(--red); }
+.stat.yellow .number { color: var(--yellow); }
+.stat.blue .number { color: var(--blue); }
+.section { margin-bottom: 24px; }
+.section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border);
+}
+td {
+    padding: 10px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+}
+tr:last-child td { border-bottom: none; }
+tr:hover { background: rgba(255,255,255,0.02); }
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.badge-ok { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge-error { background: rgba(239,68,68,0.15); color: var(--red); }
+.badge-idle { background: rgba(245,158,11,0.15); color: var(--yellow); }
+.badge-sys { background: rgba(59,130,246,0.15); color: var(--blue); }
+.schedule { font-family: monospace; font-size: 11px; color: var(--text-dim); }
+.purpose { font-size: 12px; color: var(--text-dim); max-width: 300px; }
+.health-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.health-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.health-item .name { font-size: 13px; }
+.health-item .val { font-weight: 600; font-size: 14px; }
+.footer { 
+    text-align: center; 
+    color: var(--text-dim); 
+    font-size: 11px; 
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>⚡ AXIS Automation Dashboard</h1>
+    <div class="time">Обновлено: 28.03.2026 00:30 (Qyzylorda)</div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+    <div class="stat blue"><div class="number">47</div><div class="label">Всего задач</div></div>
+    <div class="stat green"><div class="number">27</div><div class="label">Успешных</div></div>
+    <div class="stat yellow"><div class="number">1</div><div class="label">Ожидают</div></div>
+    <div class="stat red"><div class="number">3</div><div class="label">С ошибками</div></div>
+    <div class="stat blue"><div class="number">31</div><div class="label">OpenClaw</div></div>
+    <div class="stat blue"><div class="number">16</div><div class="label">System</div></div>
+</div>
+<div class="health-bar"><div class="health-item"><span class="name">🖥 Сервер</span><span class="val" style="color:var(--green)">2d 1h</span></div><div class="health-item"><span class="name">💾 RAM</span><span class="val">16.7%</span></div><div class="health-item"><span class="name">💽 Disk</span><span class="val">38.4%</span></div><div class="health-item"><span class="name">🔒 Статус</span><span class="val" style="color:var(--green)">healthy</span></div></div><div class="section"><h2>📋 Бизнес-автоматизация (OpenClaw)</h2><div class="table-wrap"><table><tr><th>Статус</th><th>Название</th><th>Расписание</th><th>Зачем нужен</th><th>Последний запуск</th><th>Время</th></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Security Check Weekly</strong></td><td><span class="schedule">0 10 * * 1</span></td><td><span class="purpose">Входы SSH, fail2ban, порты, обновления</span></td><td>4д назад</td><td>34с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Утренний пинг команде</strong></td><td><span class="schedule">0 10 * * 1-5</span></td><td><span class="purpose">Мирас и Бахытжан получают свои задачи на день</span></td><td>15ч назад</td><td>29с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Проверка триггеров</strong></td><td><span class="schedule">0 10,14,16 * * 1-5</span></td><td><span class="purpose">Каждые 2ч — проверка зависших задач, эскалация</span></td><td>9ч назад</td><td>1.4м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Strategy KPI сбор</strong></td><td><span class="schedule">0 11 * * 1</span></td><td><span class="purpose">Сбор метрик: задачи, проекты, активность</span></td><td>5д назад</td><td>54с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Проактивный чекин Руслана</strong></td><td><span class="schedule">0 11,15 * * 1-5</span></td><td><span class="purpose"></span></td><td>10ч назад</td><td>42с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Дневная проверка команды</strong></td><td><span class="schedule">0 14 * * 1-5</span></td><td><span class="purpose">Пинг прогресса сотрудникам</span></td><td>11ч назад</td><td>50с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Вечерний отчёт команды</strong></td><td><span class="schedule">0 17 * * 1-5</span></td><td><span class="purpose">Запрос итогов дня у Мираса и Бахытжана</span></td><td>8ч назад</td><td>12с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Месячная ретроспектива</strong></td><td><span class="schedule">0 17 28-31 * *</span></td><td><span class="purpose">Итоги месяца, карточки в Trello из дельтаплюсов</span></td><td>9д назад</td><td>3.7м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Еженедельная ретроспектива</strong></td><td><span class="schedule">0 18 * * 5</span></td><td><span class="purpose">Итоги недели: плюсы, минусы, дельтаплюсы</span></td><td>7ч назад</td><td>36с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>QC аудит агентов</strong></td><td><span class="schedule">0 20 * * 1-5</span></td><td><span class="purpose">Проверка MEMORY.md, протоколов, дисциплины агентов</span></td><td>5ч назад</td><td>24с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily System Audit</strong></td><td><span class="schedule">0 22 * * *</span></td><td><span class="purpose">Аудит сервера: процессы, диск, RAM, логи</span></td><td>3ч назад</td><td>1.0м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (main)</strong></td><td><span class="schedule">0 23 * * *</span></td><td><span class="purpose"></span></td><td>2ч назад</td><td>55с</td></tr><tr><td><span class="badge badge-idle">⏳ Ожидает</span></td><td><strong>Автоочистка старых сессий</strong></td><td><span class="schedule">0 3 * * 0</span></td><td><span class="purpose"></span></td><td>никогда</td><td>—</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Адская неделя — утренний check-in</strong></td><td><span class="schedule">0 5 23-29 3 *</span></td><td><span class="purpose"></span></td><td>2д назад</td><td>10с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Утренний отчёт Trello</strong></td><td><span class="schedule">0 9 * * 1-5</span></td><td><span class="purpose">Статус задач на досках — что в работе, что просрочено</span></td><td>16ч назад</td><td>29с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Dashboard Update</strong></td><td><span class="schedule">0 9,13,17 * * 1-5</span></td><td><span class="purpose"></span></td><td>7ч назад</td><td>1.9м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (devops)</strong></td><td><span class="schedule">10 23 * * *</span></td><td><span class="purpose"></span></td><td>1ч назад</td><td>37с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (finance)</strong></td><td><span class="schedule">20 23 * * *</span></td><td><span class="purpose"></span></td><td>1ч назад</td><td>2.0м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (shket)</strong></td><td><span class="schedule">25 23 * * *</span></td><td><span class="purpose"></span></td><td>1ч назад</td><td>1.6м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Пинг брифинг (кто не заполнил)</strong></td><td><span class="schedule">30 10 * * 1-5</span></td><td><span class="purpose"></span></td><td>14ч назад</td><td>22с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Дневная проверка Trello</strong></td><td><span class="schedule">30 13 * * 1-5</span></td><td><span class="purpose">Промежуточный статус + просроченные задачи</span></td><td>11ч назад</td><td>37с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>KPI Check (ежедневный)</strong></td><td><span class="schedule">30 14 * * 1-5</span></td><td><span class="purpose"></span></td><td>10ч назад</td><td>1.4м</td></tr><tr><td><span class="badge badge-error">❌ Ошибка</span></td><td><strong>Обновление данных (перед вечерними)</strong></td><td><span class="schedule">30 16 * * 1-5</span></td><td><span class="purpose"></span></td><td>8ч назад</td><td>1.0м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Вечерний отчёт Trello</strong></td><td><span class="schedule">30 18 * * 1-5</span></td><td><span class="purpose">Итоговая статистика: закрыто/перенесено/отставания</span></td><td>6ч назад</td><td>17с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (hr)</strong></td><td><span class="schedule">30 23 * * *</span></td><td><span class="purpose"></span></td><td>1ч назад</td><td>2.6м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Проверка Google Forms</strong></td><td><span class="schedule">30 8 * * 1</span></td><td><span class="purpose">Кто заполнил план-отчёт, напоминания</span></td><td>5д назад</td><td>2.1м</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (qc)</strong></td><td><span class="schedule">35 23 * * *</span></td><td><span class="purpose"></span></td><td>55 мин назад</td><td>39с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (draftsman)</strong></td><td><span class="schedule">40 23 * * *</span></td><td><span class="purpose"></span></td><td>50 мин назад</td><td>49с</td></tr><tr><td><span class="badge badge-ok">✅ OK</span></td><td><strong>Daily MEMORY Update (strategy)</strong></td><td><span class="schedule">45 23 * * *</span></td><td><span class="purpose"></span></td><td>45 мин назад</td><td>1.8м</td></tr><tr><td><span class="badge badge-error">❌ Ошибка</span></td><td><strong>Daily MEMORY Update (ops)</strong></td><td><span class="schedule">5 23 * * *</span></td><td><span class="purpose"></span></td><td>1ч назад</td><td>2.0м</td></tr><tr><td><span class="badge badge-error">❌ Ошибка</span></td><td><strong>Daily MEMORY Update (tech)</strong></td><td><span class="schedule">5 23 * * *</span></td><td><span class="purpose"></span></td><td>1ч назад</td><td>2.0м</td></tr></table></div></div><div class="section"><h2>🖥 Системный Crontab</h2><div class="table-wrap"><table><tr><th>Статус</th><th>Название</th><th>Расписание</th></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Системный монитор</strong></td><td><span class="schedule">*/15 * * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Проверка сроков Trello</strong></td><td><span class="schedule">0 9 * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Напоминания Trello</strong></td><td><span class="schedule">5 9 * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Ingress — входящие задачи</strong></td><td><span class="schedule">0 * * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Семантическая индексация</strong></td><td><span class="schedule">0 3 * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Очистка логов</strong></td><td><span class="schedule">0 0 * * 0</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Пятничный отчёт Trello</strong></td><td><span class="schedule">0 18 * * 5</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Бэкап конфигов</strong></td><td><span class="schedule">0 2 * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Системный монитор</strong></td><td><span class="schedule">*/30 * * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Dashboard обновление</strong></td><td><span class="schedule">0 9-20 * * 1-6</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Dashboard обновление</strong></td><td><span class="schedule">*/30 * * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Бэкап конфигов</strong></td><td><span class="schedule">5 2 * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Dashboard обновление</strong></td><td><span class="schedule">*/30 * * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Unknown</strong></td><td><span class="schedule">*/5 * * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Бэкап конфигов</strong></td><td><span class="schedule">0 2 * * *</span></td></tr><tr><td><span class="badge badge-sys">🔄 Active</span></td><td><strong>Unknown</strong></td><td><span class="schedule">0 4 * * 0</span></td></tr></table></div></div><div class="footer">AXIS Automation Dashboard • 31 OpenClaw + 16 System = 47 задач • Auto-refresh 5 мин</div></body></html>

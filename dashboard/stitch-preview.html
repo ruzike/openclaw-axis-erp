@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AXIS | Office Management Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary": "#ffffff",
+              "on-background": "#0d1c2e",
+              "primary": "#000000",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#dce9ff",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#00164e",
+              "secondary-fixed": "#89f5e7",
+              "on-secondary-container": "#006f66",
+              "on-primary-fixed-variant": "#264191",
+              "on-surface-variant": "#45464d",
+              "on-tertiary-fixed-variant": "#783200",
+              "surface-container-highest": "#d5e3fc",
+              "secondary-container": "#86f2e4",
+              "tertiary-fixed": "#ffdbca",
+              "surface-variant": "#d5e3fc",
+              "on-secondary-fixed-variant": "#005049",
+              "tertiary-container": "#341100",
+              "on-tertiary": "#ffffff",
+              "background": "#f8f9ff",
+              "inverse-on-surface": "#eaf1ff",
+              "surface-tint": "#4059aa",
+              "secondary": "#006a61",
+              "surface-container": "#e6eeff",
+              "surface": "#f8f9ff",
+              "tertiary": "#000000",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-container": "#d95f00",
+              "inverse-surface": "#233144",
+              "surface-bright": "#f8f9ff",
+              "outline": "#76777d",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#ffb690",
+              "primary-container": "#00164e",
+              "error": "#ba1a1a",
+              "outline-variant": "#c6c6cd",
+              "surface-dim": "#ccdbf3",
+              "on-secondary-fixed": "#00201d",
+              "on-surface": "#0d1c2e",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-tertiary-fixed": "#341100",
+              "inverse-primary": "#b6c4ff",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#6780d3",
+              "surface-container-low": "#eff4ff",
+              "secondary-fixed-dim": "#6bd8cb"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .headline-font { font-family: 'Manrope', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-slate-100 dark:bg-slate-950 flex flex-col h-full py-8 px-4 z-50">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-black text-slate-900 dark:text-white headline-font tracking-tighter">AXIS</h1>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-widest mt-1">Office Management</p>
+</div>
+<nav class="flex-grow space-y-1">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 px-4 py-3 text-teal-600 dark:text-teal-400 border-r-4 border-teal-600 dark:border-teal-400 bg-slate-200/50 dark:bg-slate-800/50 transition-all duration-300 ease-in-out font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 dark:hover:text-teal-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="meeting_room">meeting_room</span>
+<span>Meeting Rooms</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 dark:hover:text-teal-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Employees</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 dark:hover:text-teal-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span>Task Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-teal-500 dark:hover:text-teal-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Analytics</span>
+</a>
+</nav>
+<div class="mt-auto px-4 mb-6">
+<button class="w-full bg-primary text-on-primary py-3 rounded-md font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Reservation
+            </button>
+</div>
+<div class="space-y-1 border-t border-slate-200 dark:border-slate-800 pt-6">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-teal-500 text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:text-error text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-slate-50 dark:bg-slate-900 flex justify-between items-center px-8 py-4 w-full">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-xl focus:ring-2 focus:ring-teal-500 text-sm transition-all" placeholder="Search spaces, staff or tasks..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-tertiary-fixed-dim rounded-full"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold headline-font text-slate-900 dark:text-white">Marcus Vance</p>
+<p class="text-[10px] text-slate-500 font-medium">Executive Director</p>
+</div>
+<img alt="Executive User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-slate-200" data-alt="professional portrait of a middle-aged executive man with a confident expression in a clean studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXkYsX14ljIgKayhNBXAa5RlW-lAhhbuXE2KBrRPXLyYujEA6lDSJe54p2zvHxWFyjlgTWp6USBnCVImFFldz3cStfJMEUAmNj2wDOAOhf0M9OMq-Xi8G6xSZqIho6YB1p2D6aIBu0iYR4880_r0NXbFPNu6Xo5bf6dF1HvfYlA9ycp_tEgocgWwmG0Qr9_KK5peMiCM5T3Fg0VFSc2wSOJ_KLgWcj88A5WvjOffhkG1SExHzknmTv-vFx8NXruNEyATMcPRHWbcY"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-8 space-y-8">
+<!-- Hero Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Occupancy Metric -->
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-sm relative overflow-hidden group">
+<div class="relative z-10 flex flex-col justify-between h-full">
+<div>
+<span class="text-secondary font-bold text-xs uppercase tracking-widest headline-font">Real-time Pulse</span>
+<h3 class="text-4xl font-extrabold headline-font mt-2">84%</h3>
+<p class="text-on-surface-variant font-medium text-sm mt-1">Current Office Occupancy</p>
+</div>
+<div class="mt-8 flex items-center gap-4">
+<div class="flex-grow bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-[84%]"></div>
+</div>
+<span class="text-xs font-bold text-secondary">+5.2% vs prev hour</span>
+</div>
+</div>
+<!-- Background aesthetic -->
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">apartment</span>
+</div>
+</div>
+<!-- Meeting Rooms -->
+<div class="bg-primary text-on-primary p-8 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary-container" data-icon="meeting_room">meeting_room</span>
+<span class="text-[10px] bg-white/10 px-2 py-1 rounded-full uppercase font-bold tracking-tighter">Live</span>
+</div>
+<div>
+<h3 class="text-3xl font-extrabold headline-font">12/15</h3>
+<p class="text-white/60 text-sm font-medium mt-1">Active Meeting Rooms</p>
+</div>
+</div>
+<!-- Tasks -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col justify-between border-t-4 border-tertiary-fixed-dim">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="assignment_late">assignment_late</span>
+</div>
+<div>
+<h3 class="text-3xl font-extrabold headline-font">7</h3>
+<p class="text-on-surface-variant text-sm font-medium mt-1">Pending Critical Tasks</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Room Status & Bookings (Main Section) -->
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold headline-font">Meeting Room Inventory</h2>
+<button class="text-teal-600 text-sm font-bold hover:underline">View All Schedule</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider headline-font">Room Name</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider headline-font">Capacity</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider headline-font">Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider headline-font">Next Booking</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider headline-font text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">tv_gen</span>
+</div>
+<span class="font-bold text-sm">Glass Executive Suite</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">12 Pax</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-error-container text-on-error-container uppercase">In Use</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">14:30 PM (Project Alpha)</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-lg transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="font-bold text-sm">Pod C-4 (Creative Hub)</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">4 Pax</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-secondary-container text-on-secondary-container uppercase">Available</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">None Today</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-lg transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">videocam</span>
+</div>
+<span class="font-bold text-sm">West Wing Boardroom</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">25 Pax</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-secondary-container text-on-secondary-container uppercase">Available</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">11:00 AM (Quarterly)</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-lg transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">coffee</span>
+</div>
+<span class="font-bold text-sm">Lounge Corner B</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant font-medium">2 Pax</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-error-container text-on-error-container uppercase">In Use</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Cleaning at 12:00 PM</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-lg transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Upcoming Events & Announcements -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold headline-font text-lg">Upcoming Office Events</h3>
+<span class="material-symbols-outlined text-slate-400">event</span>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest p-4 rounded-lg shadow-sm">
+<div class="text-tertiary-fixed-dim text-[10px] font-extrabold uppercase mb-2">Tomorrow • 10:00 AM</div>
+<h4 class="font-bold text-sm mb-1">Fire Safety Drill</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Mandatory for all staff present in the building at West Exit.</p>
+</div>
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest p-4 rounded-lg shadow-sm">
+<div class="text-secondary text-[10px] font-extrabold uppercase mb-2">Oct 24 • 4:00 PM</div>
+<h4 class="font-bold text-sm mb-1">Founders Townhall</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Streamed live in Suite A and available on AXIS Portal.</p>
+</div>
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest p-4 rounded-lg shadow-sm">
+<div class="text-on-primary-container text-[10px] font-extrabold uppercase mb-2">Oct 26 • All Day</div>
+<h4 class="font-bold text-sm mb-1">Office Maintenance</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">HVAC servicing in the North Wing. Expect minor noise.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Manager Task List & Directory (Sidebar Section) -->
+<div class="space-y-8">
+<!-- Task List Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col h-fit">
+<div class="p-6 pb-2">
+<h2 class="text-lg font-bold headline-font mb-4">Urgent Actions</h2>
+<div class="space-y-4">
+<div class="flex gap-4 items-start group">
+<div class="mt-1 w-5 h-5 rounded border-2 border-slate-300 flex items-center justify-center cursor-pointer hover:border-teal-500 transition-colors"></div>
+<div class="flex-1">
+<p class="text-sm font-semibold leading-none">Approve Overtime for Security</p>
+<p class="text-[11px] text-slate-400 mt-1">Due in 2h • High Priority</p>
+</div>
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-lg">priority_high</span>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 w-5 h-5 rounded border-2 border-slate-300 flex items-center justify-center cursor-pointer hover:border-teal-500 transition-colors"></div>
+<div class="flex-1">
+<p class="text-sm font-semibold leading-none">Review HVAC Logs (North)</p>
+<p class="text-[11px] text-slate-400 mt-1">Routine check required</p>
+</div>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 w-5 h-5 rounded border-2 border-teal-500 bg-teal-500 flex items-center justify-center cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-white text-[12px]">check</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold leading-none text-slate-400 line-through">Onboard 4 New Hires</p>
+<p class="text-[11px] text-slate-300 mt-1">Completed by 9:00 AM</p>
+</div>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 w-5 h-5 rounded border-2 border-slate-300 flex items-center justify-center cursor-pointer hover:border-teal-500 transition-colors"></div>
+<div class="flex-1">
+<p class="text-sm font-semibold leading-none">Update Desk Allocation Map</p>
+<p class="text-[11px] text-slate-400 mt-1">Pending floor plan update</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 bg-surface-container-low p-4 rounded-b-xl">
+<button class="w-full text-center text-xs font-bold text-slate-600 hover:text-primary transition-colors">Open Full Task Manager</button>
+</div>
+</section>
+<!-- Employee Directory Snippet -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold headline-font">Team Presence</h2>
+<span class="text-[10px] font-bold text-secondary">42 Active Now</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 divide-y divide-surface-container">
+<div class="flex items-center gap-3 py-3">
+<div class="relative">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="close-up portrait of a smiling young professional woman with dark hair in a bright office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8BQdNn6uuVMh6ySVd-bEprr55qkCjEZ3ai9hdOFO7SloriwGDI1RjTe3bfhW5f8We4ZcajefSwIMipY8O0K1eoBU0jBBJ64INK-wTo0T5xtslsDE2U3Q95hxJGHz-ztR1YbufjfC80YE-gSA35hBJjrqYnsZUjfKq-9vIc-xDB6rfrMBNxWyO6QwskeJJ-ANLDlCwdGHxyP8dqoZ_qEmFXBLi5uZrFIfMJN-iryVElE8vrE0Y4iG8AI7GIpBYwLO1NatCdZ7fGzs"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-secondary rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold">Sarah Jenkins</p>
+<p class="text-[10px] text-on-surface-variant">Lead Designer • Floor 3</p>
+</div>
+<button class="p-1.5 hover:bg-slate-100 rounded-lg"><span class="material-symbols-outlined text-slate-400 text-base">chat_bubble</span></button>
+</div>
+<div class="flex items-center gap-3 py-3">
+<div class="relative">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="portrait of a young man with glasses and a friendly smile wearing a casual shirt in a modern workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6KbP8pV5pFSxiZewcsHeyQ55aIaEp4V7Qy0kjTwSrrD8TKBTbw9go771ILynzF9o7QmCCxMsJoPJMmZzX-NdClp1JEij5sDLI-yffhy5vtnTGcoPWbYPlKMlTNmTYx55Z0PqbBlposfE9O9um2k-Ft_HfJUXCUu9eQj2owelq7vWsvWUNEDqutern0Drqa4JAKsh_oxaNwCEg233Svc86VtrSMWFHM3PNXFz0v7zM-EbD2xBa_6P9iyil1SSjxlhKZKL6HtL-lec"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-secondary rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold">Liam Russo</p>
+<p class="text-[10px] text-on-surface-variant">DevOps • Remote/Sync</p>
+</div>
+<button class="p-1.5 hover:bg-slate-100 rounded-lg"><span class="material-symbols-outlined text-slate-400 text-base">chat_bubble</span></button>
+</div>
+<div class="flex items-center gap-3 py-3">
+<div class="relative">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="professional portrait of an african american woman in a stylish blazer looking confident in an office lobby" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkj8iRwt3-5vYng0bQkExJt0nlOXMbwb6VzTjkMj2U0GdWRNTImB_Av5b8XC98pWMisbQ_KcXoQ9Vt_nuKPNLz0-mSiPpiaVLZbPzLCnlTbocKTzBZ6CoFjuN90UjURKGj0mvMsRNwuluxdFjlwOnIxzJ3ptiOTvCugVPmAEoV4_rRmuOVsy8ZRUdTSfLH8xiOxVKg4lZ1J5xjg_O6MBJbdx6zo9VPqJEIkPCsypIPJBRPO-7NM3cPbTAAGyOWWDNd5tsZ8YfEXSE"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-slate-300 rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold">Amara Okafor</p>
+<p class="text-[10px] text-on-surface-variant">Operations • Out (Lunch)</p>
+</div>
+<button class="p-1.5 hover:bg-slate-100 rounded-lg"><span class="material-symbols-outlined text-slate-400 text-base">chat_bubble</span></button>
+</div>
+</div>
+<button class="w-full bg-surface-container-high py-3 rounded-lg text-xs font-bold tracking-wide hover:bg-secondary-container transition-colors">
+                            Directory Search
+                        </button>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden on Mobile) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all group z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+<span class="absolute right-full mr-4 bg-primary text-white text-xs py-2 px-4 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity font-bold">Quick Reserve Room</span>
+</button>
+</body></html>

@@ -1,0 +1,35 @@
+[Unit]
+Description=Cloudflare Tunnel for Trello Webhooks
+Documentation=https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/
+After=network-online.target trello-webhook.service
+Wants=network-online.target
+Requires=trello-webhook.service
+
+[Service]
+Type=simple
+User=user
+Group=user
+
+# Quick Tunnel (меняет URL при перезапуске)
+# ExecStart=/usr/local/bin/cloudflared tunnel --url http://localhost:18790
+
+# Именованный туннель (рекомендуется для production)
+# Сначала создайте: cloudflared tunnel create axis-trello
+# ExecStart=/usr/local/bin/cloudflared tunnel run axis-trello
+
+# Quick Tunnel с логированием URL
+WorkingDirectory=/home/axis/openclaw/axis-system/trello-webhook
+ExecStart=/bin/bash -c '/home/axis/.local/bin/cloudflared tunnel --url http://localhost:18790 2>&1 | tee logs/tunnel.log'
+
+# Auto-update webhooks после старта туннеля (с задержкой 10 сек)
+ExecStartPost=/bin/bash -c 'sleep 10 && /home/axis/openclaw/axis-system/trello-webhook/auto-update-webhooks.sh'
+
+Restart=on-failure
+RestartSec=30
+
+# Логирование
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

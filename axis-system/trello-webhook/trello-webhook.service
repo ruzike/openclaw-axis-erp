@@ -1,0 +1,34 @@
+[Unit]
+Description=Trello Webhook Server (AXIS Real-time Sync)
+Documentation=file:///home/axis/openclaw/axis-system/trello-webhook/README.md
+After=network.target
+
+[Service]
+Type=simple
+User=user
+Group=user
+WorkingDirectory=/home/axis/openclaw/axis-system/trello-webhook
+
+# Основной процесс
+ExecStart=/usr/bin/python3 /home/axis/openclaw/axis-system/trello-webhook/trello-webhook-server.py
+
+# Перезапуск при падении
+Restart=on-failure
+RestartSec=10
+
+# Environment
+Environment=TRELLO_WEBHOOK_PORT=18790
+Environment=PYTHONUNBUFFERED=1
+
+# Логирование (в дополнение к файловым логам)
+StandardOutput=journal
+StandardError=journal
+
+# Ограничения безопасности
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/axis/openclaw/axis-system
+
+[Install]
+WantedBy=multi-user.target

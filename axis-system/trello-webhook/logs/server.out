@@ -1,0 +1,25 @@
+2026-03-10 19:21:10,315 [INFO] Загружено 5 досок для мониторинга
+2026-03-10 19:21:10,316 [INFO] EventQueue инициализирован: /home/axis/openclaw/axis-system/trello-webhook/event_queue.sqlite
+2026-03-10 19:21:10,318 [INFO] ============================================================
+2026-03-10 19:21:10,318 [INFO] 🚀 Trello Webhook Server запускается...
+2026-03-10 19:21:10,318 [INFO] 📍 Порт: 18790
+2026-03-10 19:21:10,318 [INFO] 📁 State file: /home/axis/openclaw/axis-system/axis-state.json
+2026-03-10 19:21:10,318 [INFO] 📊 Мониторинг досок: 5
+2026-03-10 19:21:10,318 [INFO] 📦 SQLite очередь: /home/axis/openclaw/axis-system/trello-webhook/event_queue.sqlite
+2026-03-10 19:21:10,318 [INFO] ============================================================
+2026-03-10 19:21:10,319 [INFO] 🔄 Retry worker запущен
+ * Serving Flask app 'trello-webhook-server'
+ * Debug mode: off
+2026-03-10 19:21:10,326 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:18790
+ * Running on http://89.167.124.79:18790
+2026-03-10 19:21:10,326 [INFO] [33mPress CTRL+C to quit[0m
+2026-03-10 19:21:13,022 [INFO] 127.0.0.1 - - [10/Mar/2026 19:21:13] "GET /health HTTP/1.1" 200 -
+2026-03-10 19:21:30,826 [INFO] 127.0.0.1 - - [10/Mar/2026 19:21:30] "GET /health HTTP/1.1" 200 -
+2026-03-10 19:21:35,489 [INFO] 📡 HEAD запрос от Trello (верификация endpoint)
+2026-03-10 19:21:35,490 [INFO] 127.0.0.1 - - [10/Mar/2026 19:21:35] "HEAD /webhook/trello HTTP/1.1" 200 -
+2026-03-10 19:23:56,487 [INFO] 127.0.0.1 - - [10/Mar/2026 19:23:56] "GET /health HTTP/1.1" 200 -
+2026-03-10 19:24:09,652 [INFO] 127.0.0.1 - - [10/Mar/2026 19:24:09] "GET /health HTTP/1.1" 200 -
+2026-03-10 19:24:09,843 [INFO] 127.0.0.1 - - [10/Mar/2026 19:24:09] "GET /health HTTP/1.1" 200 -
+2026-03-10 19:40:22,744 [INFO] 127.0.0.1 - - [10/Mar/2026 19:40:22] "GET /health HTTP/1.1" 200 -

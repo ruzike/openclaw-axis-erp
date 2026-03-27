@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300">
+    <title>AXIS Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 16px;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0 12px;
+            border-bottom: 1px solid #21262d;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #58a6ff;
+            letter-spacing: 2px;
+        }
+        .header .updated {
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: 4px;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            flex: 1 1 160px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #58a6ff;
+        }
+        .stat-card .value.red { color: #f85149; }
+        .stat-card .value.green { color: #3fb950; }
+        .stat-card .value.yellow { color: #d29922; }
+        .stat-card .label {
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sections */
+        .section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .section-header {
+            background: #21262d;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #e6edf3;
+            border-bottom: 1px solid #30363d;
+        }
+        .section-body { padding: 0; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            background: #1c2128;
+            color: #8b949e;
+            font-weight: 600;
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 8px 12px;
+            border-top: 1px solid #21262d;
+            vertical-align: middle;
+        }
+        tr:hover td { background: #1c2128; }
+        .row-error td { background: rgba(248, 81, 73, 0.08); }
+        .row-error:hover td { background: rgba(248, 81, 73, 0.14); }
+        td.status { text-align: center; font-size: 16px; }
+
+        @media (max-width: 600px) {
+            .stat-card { flex: 1 1 120px; }
+            .stat-card .value { font-size: 24px; }
+            td, th { padding: 6px 8px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚡ AXIS DASHBOARD</h1>
+        <div class="updated">Обновлено: 27.03.2026 20:00 (UTC+5) · Auto-refresh: 5 мин</div>
+        <div class="updated">Команда: Руслан · Мирас · Бахытжан</div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="value">10</div>
+            <div class="label">В работе</div>
+        </div>
+        <div class="stat-card">
+            <div class="value red">10</div>
+            <div class="label">Просрочено</div>
+        </div>
+        <div class="stat-card">
+            <div class="value yellow">50%</div>
+            <div class="label">Здоровье агентов</div>
+        </div>
+        <div class="stat-card">
+            <div class="value yellow">34%</div>
+            <div class="label">KPI балл</div>
+        </div>
+        <div class="stat-card">
+            <div class="value red">2</div>
+            <div class="label">Cron ошибки</div>
+        </div>
+    </div>
+
+    <!-- Trello -->
+    <div class="section">
+        <div class="section-header">📋 Trello — Карточки (15)</div>
+        <div class="section-body">
+            <table>
+                <tr>
+                    <th>Задача</th>
+                    <th>Список</th>
+                    <th>Срок</th>
+                    <th>Статус</th>
+                </tr>
+                
+        <tr class="">
+            <td>TEST: Агент создал карточку автономно</td>
+            <td>Бэклог</td>
+            <td>—</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr class="row-error">
+            <td>СЭД КОСТАНАЙ — Визуализации</td>
+            <td>Очередь</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>СЭД ТАУЕР КОСТАНАЙ — разработать Визуализации для маркетинга</td>
+            <td>Очередь</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>АЭРОПОРТ АРКАЛЫК — Проект Фасада Собрать визуализации в Альб</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>АЭРОПОРТ АРКАЛЫК — проект интерьера — Собрать визуализации в</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>ШОУ РУМ — Пятикомнатная квартира  — Разработать визуализации</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>🏙️ ЖК ТОКИО: Разработать визуализации всех помещений</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>🏘️ ЖК ЛОНДОН: Разработать визуализации всех помещений</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>ЕСИЛЬ СИТИ 2 — Визуализации</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>СЭД ОФИС — Разработать визуализации всех помещений</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="row-error">
+            <td>ЖК Онер: Разработать эскиз фасада Кммерции (3-4 визуализации</td>
+            <td>В работе</td>
+            <td>27.02.2026</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr class="">
+            <td>Квартира 5к — Разработать Визуализации всех помещений</td>
+            <td>Готово</td>
+            <td>—</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr class="">
+            <td>✅ Фасад СЭД ТОУЕРС Петропавловск</td>
+            <td>Готово</td>
+            <td>—</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr class="">
+            <td>✅ ЖК Лондон: расчёт объёмов интерьера</td>
+            <td>Готово</td>
+            <td>—</td>
+            <td class="status">🟢</td>
+        </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- KPI дисциплины -->
+    <div class="section">
+        <div class="section-header">📊 KPI Дисциплины (брифинг / Trello / план-отчёт)</div>
+        <div class="section-body">
+            <table>
+                <tr>
+                    <th>Категория</th>
+                    <th>Балл</th>
+                    <th>Детали</th>
+                </tr>
+                
+        <tr>
+            <td>📋 Trello</td>
+            <td class="status">🔴 0%</td>
+            <td>Просрочено: 10 | Зависших: 0</td>
+        </tr>
+        <tr>
+            <td>📝 Утренний брифинг</td>
+            <td class="status">🟡 67%</td>
+            <td>Заполнили: Бахытжан, Мирас | Не заполнили: Руслан</td>
+        </tr>
+        <tr>
+            <td>📊 План-отчёт</td>
+            <td class="status">⚪ None%</td>
+            <td>Ошибка: 'refresh_token'</td>
+        </tr>
+        <tr style="font-weight:bold;border-top:2px solid #30363d;">
+            <td>ОБЩИЙ БАЛЛ</td>
+            <td class="status" style="font-size:18px;">🟡 34%</td>
+            <td>2/3 метрик</td>
+        </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Команда -->
+    <div class="section">
+        <div class="section-header">👥 Команда</div>
+        <div class="section-body">
+            <table>
+                <tr>
+                    <th>Имя</th>
+                    <th>Telegram</th>
+                    <th>Брифинг</th>
+                    <th>Ритуалы</th>
+                </tr>
+                
+        <tr>
+            <td>Руслан</td>
+            <td>@axis_ceo</td>
+            <td class="status">❌</td>
+            <td style="font-size:12px;color:#8b949e">Утренний брифинг · Планёрка Пн · Ретроспектива Пт</td>
+        </tr>
+        <tr>
+            <td>Мирас</td>
+            <td>@MIKA721S</td>
+            <td class="status">✅</td>
+            <td style="font-size:12px;color:#8b949e">Утренний брифинг · Trello обновление · План-отчёт Пн</td>
+        </tr>
+        <tr>
+            <td>Бахытжан</td>
+            <td>@Sagimbayev</td>
+            <td class="status">✅</td>
+            <td style="font-size:12px;color:#8b949e">Утренний брифинг · Trello обновление · План-отчёт Пн</td>
+        </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Агенты -->
+    <div class="section">
+        <div class="section-header">🤖 Агенты AXIS (12)</div>
+        <div class="section-body">
+            <table>
+                <tr>
+                    <th>Агент</th>
+                    <th>SOUL строк</th>
+                    <th>MEMORY обновлён</th>
+                    <th>Размер</th>
+                    <th>Статус</th>
+                </tr>
+                
+        <tr>
+            <td>main</td>
+            <td>174</td>
+            <td>26.03 16:22</td>
+            <td>4KB</td>
+            <td class="status">🟡</td>
+        </tr>
+        <tr>
+            <td>ops</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0KB</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr>
+            <td>tech</td>
+            <td>87</td>
+            <td>26.03 16:22</td>
+            <td>8KB</td>
+            <td class="status">🟡</td>
+        </tr>
+        <tr>
+            <td>devops</td>
+            <td>110</td>
+            <td>26.03 23:10</td>
+            <td>33KB</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr>
+            <td>sales</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0KB</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr>
+            <td>finance</td>
+            <td>89</td>
+            <td>26.03 23:22</td>
+            <td>32KB</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr>
+            <td>shket</td>
+            <td>75</td>
+            <td>26.03 23:26</td>
+            <td>30KB</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr>
+            <td>hr</td>
+            <td>85</td>
+            <td>26.03 23:31</td>
+            <td>8KB</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr>
+            <td>qc</td>
+            <td>99</td>
+            <td>26.03 23:35</td>
+            <td>2KB</td>
+            <td class="status">🟢</td>
+        </tr>
+        <tr>
+            <td>draftsman</td>
+            <td>87</td>
+            <td>25.03 23:41</td>
+            <td>20KB</td>
+            <td class="status">🟡</td>
+        </tr>
+        <tr>
+            <td>team</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0KB</td>
+            <td class="status">🔴</td>
+        </tr>
+        <tr>
+            <td>strategy</td>
+            <td>53</td>
+            <td>26.03 23:46</td>
+            <td>7KB</td>
+            <td class="status">🟢</td>
+        </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Кроны -->
+    <div class="section">
+        <div class="section-header">⏱ Cron Jobs (30)</div>
+        <div class="section-body">
+            <table>
+                <tr>
+                    <th>Имя</th>
+                    <th>Статус</th>
+                    <th>Ошибки</th>
+                    <th>Следующий запуск</th>
+                </tr>
+                
+        <tr>
+            <td>QC аудит агентов</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 20:00</td>
+        </tr>
+        <tr>
+            <td>Daily System Audit</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 22:00</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (main)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:00</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (ops)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:05</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (tech)</td>
+            <td class="status">🔴</td>
+            <td>1</td>
+            <td>27.03 23:05</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (devops)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:10</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (finance)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:20</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (shket)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:25</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (hr)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:30</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (qc)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:35</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (draftsman)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:40</td>
+        </tr>
+        <tr>
+            <td>Daily MEMORY Update (strategy)</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>27.03 23:45</td>
+        </tr>
+        <tr>
+            <td>Месячная ретроспектива</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>28.03 17:00</td>
+        </tr>
+        <tr>
+            <td>Автоочистка старых сессий</td>
+            <td class="status">🟡</td>
+            <td>0</td>
+            <td>29.03 03:00</td>
+        </tr>
+        <tr>
+            <td>Проверка Google Forms</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>30.03 08:30</td>
+        </tr>
+        <tr>
+            <td>Dashboard Update</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>30.03 09:00</td>
+        </tr>
+        <tr>
+            <td>Утренний отчёт Trello</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>30.03 09:00</td>
+        </tr>
+        <tr>
+            <td>Проверка триггеров</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>30.03 10:00</td>
+        </tr>
+        <tr>
+            <td>Утренний пинг команде</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>30.03 10:00</td>
+        </tr>
+        <tr>
+            <td>Security Check Weekly</td>
+            <td class="status">🟢</td>
+            <td>0</td>
+            <td>30.03 10:00</td>
+        </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

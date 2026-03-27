@@ -1,0 +1,310 @@
+{
+  "updatedAt": "2026-03-27T21:44:53.271946",
+  "trello": {
+    "production": {
+      "Backlog": [
+        {
+          "name": "[ШАБЛОН] — Проект",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "TEST: Агент создал карточку автономно",
+          "labels": [],
+          "due": null
+        }
+      ],
+      "In Progress": [
+        {
+          "name": "АЭРОПОРТ АРКАЛЫК — Проект Фасада Собрать визуализации в Альбом",
+          "labels": [],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "АЭРОПОРТ АРКАЛЫК — проект интерьера — Собрать визуализации в Альбом",
+          "labels": [],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "ШОУ РУМ — Пятикомнатная квартира  — Разработать визуализации Всех Помещений",
+          "labels": [
+            "🟡 Medium"
+          ],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "🏙️ ЖК ТОКИО: Разработать визуализации всех помещений",
+          "labels": [
+            "🔴 Critical",
+            "🟡 Medium"
+          ],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "🏘️ ЖК ЛОНДОН: Разработать визуализации всех помещений",
+          "labels": [],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "ЕСИЛЬ СИТИ 2 — Визуализации",
+          "labels": [],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "СЭД ОФИС — Разработать визуализации всех помещений",
+          "labels": [
+            "🟡 Medium"
+          ],
+          "due": "2026-02-27T12:00:00.000Z"
+        },
+        {
+          "name": "ЖК Онер: Разработать эскиз фасада Кммерции (3-4 визуализации и решение по фасаду)",
+          "labels": [],
+          "due": "2026-02-27T12:00:00.000Z"
+        }
+      ],
+      "Done": [
+        {
+          "name": "Квартира 5к — Разработать Визуализации всех помещений",
+          "labels": [
+            "🔴 Critical"
+          ],
+          "due": null
+        },
+        {
+          "name": "✅ Фасад СЭД ТОУЕРС Петропавловск",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "✅ ЖК Лондон: расчёт объёмов интерьера",
+          "labels": [],
+          "due": null
+        }
+      ]
+    },
+    "strategy": {
+      "💡 Идеи": [
+        {
+          "name": "Bad Cop — лимит правок (2 круга)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "CFO — считать прибыль по проекту",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Value Scanner — ценообразование по классу",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Gatekeeper — фильтр лидов",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Socrates — квалификация клиента",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Price Anchor — 2 опции цены",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Contract Generator — договор в PDF",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Auto-Funnel — возврат ушедших",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "HR Filter — отсев кандидатов",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Ad Creator — контент для соцсетей",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Naming Police — стандарты файлов",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Art Director AI — проверка качества",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Создать бота продаж @Studio_Client_Bot",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Создать HR бота @Studio_HR_Bot",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Авто-фильтр кандидатов (Test Task)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Visual Standard (SOP)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Barter++ (Маркетинг-пак для CED)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "💡 Дашборд прозрачности для CED",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "💡 Расширение команды (снять узкое горло)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "💡 Бизнес-процесс «Конвейер»",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Миграция OpenClaw на Dedicated Server",
+          "labels": [],
+          "due": null
+        }
+      ],
+      "🎯 Цели квартала": [
+        {
+          "name": "📈 Выйти на 6 млн/мес к апрелю",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Система из 18 агентов + 3 бота",
+          "labels": [],
+          "due": null
+        }
+      ],
+      "📅 Этот месяц": [
+        {
+          "name": "🔐 Настроить SSH-ключ и отключить PasswordAuthentication",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "💰 Рефинансирование квартиры через бартер с CED",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "👥 Найти 3D-артиста для делегирования",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Добавить Бахытжана в систему",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Протестировать автопинги команде",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Наполнить skills/ инструкциями (SOP)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Стабилизировать текущую систему",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "💰 Рефинансирование: Бартер с CED (февраль)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "🏠 Найти покупателя: Наследственная квартира",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "🔴 Онбординг команды в систему — Мирас + Бахытжан",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "🔴 Разобрать 10 просроченных карточек в Trello",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "🔴 Запустить лидогенерацию — откуда клиенты?",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "🟡 Финансовая картина — P&L, маржа, cash flow",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "🟡 Единая утренняя сводка вместо 5 сообщений",
+          "labels": [],
+          "due": null
+        }
+      ],
+      "🔄 Внедряю": [
+        {
+          "name": "Внедрение Trello Webhook (Real-time)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Δ+ Настроить Named Cloudflare Tunnel (постоянный webhook URL)",
+          "labels": [],
+          "due": null
+        },
+        {
+          "name": "Δ+ Настроить team-bridge.py и устранить 6 ошибок monitor.py",
+          "labels": [],
+          "due": null
+        }
+      ],
+      "✅ Внедрено": [
+        {
+          "name": "⚙️ Настроить автопубликацию @neuro_dir",
+          "labels": [],
+          "due": null
+        }
+      ]
+    }
+  },
+  "finance": {
+    "status": "pending_integration"
+  },
+  "hr": {
+    "status": "pending_integration"
+  }
+}

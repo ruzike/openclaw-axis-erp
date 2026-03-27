@@ -1,0 +1,33 @@
+{
+  "action": {
+    "id": "test123456793",
+    "idMemberCreator": "5b0b621494516d1ba0442af7",
+    "type": "updateCard",
+    "date": "2026-03-02T05:04:00.000Z",
+    "data": {
+      "card": {
+        "id": "card-deadline-456",
+        "name": "СЭД ОФИС — Визуализации",
+        "idShort": 77,
+        "due": "2026-03-05T12:00:00.000Z"
+      },
+      "old": {
+        "due": "2026-02-28T12:00:00.000Z"
+      },
+      "board": {
+        "id": "697ea1c3b95f7266bd54f96b",
+        "name": "C1 C2 — Концепция и Визуализация",
+        "shortLink": "7ByHOqVf"
+      }
+    },
+    "memberCreator": {
+      "id": "5b0b621494516d1ba0442af7",
+      "username": "ruslan_archviz",
+      "fullName": "Ruslan"
+    }
+  },
+  "model": {
+    "id": "697ea1c3b95f7266bd54f96b",
+    "name": "C1 C2 — Концепция и Визуализация"
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "generated": "2026-03-28T00:30:01",
+  "days": [
+    "2026-03-22",
+    "2026-03-23",
+    "2026-03-24",
+    "2026-03-25",
+    "2026-03-26",
+    "2026-03-27",
+    "2026-03-28"
+  ],
+  "streak": 1,
+  "crons": {
+    "Daily System Audit": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "devops",
+      "icon": "⚙️"
+    },
+    "Security Check Weekly": {
+      "statuses": [
+        "pending",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "devops",
+      "icon": "🔒"
+    },
+    "Утренний отчёт Trello": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "📋"
+    },
+    "Утренний пинг команде": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🌅"
+    },
+    "Дневная проверка Trello": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🔍"
+    },
+    "Дневная проверка команды": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "👥"
+    },
+    "Вечерний отчёт команды": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🌙"
+    },
+    "Вечерний отчёт Trello": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "error",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "📊"
+    },
+    "Проверка триггеров": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "⚡"
+    },
+    "Проверка Google Forms": {
+      "statuses": [
+        "pending",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "devops",
+      "icon": "📝"
+    },
+    "Еженедельная ретроспектива": {
+      "statuses": [
+        "pending",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🔄"
+    },
+    "Месячная ретроспектива": {
+      "statuses": [
+        "pending",
+        "pending",
+        "pending",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "📅"
+    },
+    "QC аудит агентов": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "qc",
+      "icon": "🛡️"
+    },
+    "Strategy KPI сбор": {
+      "statuses": [
+        "pending",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🎯"
+    },
+    "Проактивный чекин Руслана": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "devops",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (main)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "main",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (ops)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "error",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (tech)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "error",
+        "error",
+        "pending"
+      ],
+      "agent": "tech",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (devops)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "devops",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (finance)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "error",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "finance",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (shket)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "shket",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (hr)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "hr",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (qc)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "qc",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (draftsman)": {
+      "statuses": [
+        "ok",
+        "error",
+        "error",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "draftsman",
+      "icon": "🔧"
+    },
+    "Daily MEMORY Update (strategy)": {
+      "statuses": [
+        "ok",
+        "ok",
+        "ok",
+        "pending",
+        "pending",
+        "pending",
+        "pending"
+      ],
+      "agent": "strategy",
+      "icon": "🔧"
+    },
+    "KPI Check (ежедневный)": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🔧"
+    },
+    "Обновление данных (перед вечерними)": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "error",
+        "pending"
+      ],
+      "agent": "tech",
+      "icon": "🔧"
+    },
+    "Dashboard Update": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "tech",
+      "icon": "🔧"
+    },
+    "Пинг брифинг (кто не заполнил)": {
+      "statuses": [
+        "pending",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "pending"
+      ],
+      "agent": "opps",
+      "icon": "🔧"
+    },
+    "Адская неделя — утренний check-in": {
+      "statuses": [
+        "skip",
+        "ok",
+        "ok",
+        "ok",
+        "skip",
+        "skip",
+        "skip"
+      ],
+      "agent": "coach",
+      "icon": "🔧"
+    },
+    "Автоочистка старых сессий": {
+      "statuses": [
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip",
+        "skip"
+      ],
+      "agent": "devops",
+      "icon": "🔧"
+    }
+  },
+  "people": {
+    "Мирас": {
+      "last_response": "2026-02-15T15:01:30.440834",
+      "last_response_display": "15.02.2026 15:01",
+      "streak": 0,
+      "today": "silent"
+    },
+    "Бахытжан": {
+      "last_response": "2026-02-12T02:08:02.175267",
+      "last_response_display": "12.02.2026 02:08",
+      "streak": 0,
+      "today": "silent"
+    }
+  },
+  "system": {
+    "uptime": "2d 1h",
+    "ram_percent": 17,
+    "disk_percent": 38,
+    "errors_today": 0,
+    "backup_ok": true,
+    "status": "healthy"
+  }
+}

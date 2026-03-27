@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AXIS">
+  <meta name="description" content="AXIS AI Office — мобильный доступ к OpenClaw Gateway">
+
+  <title>AXIS AI Office</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" href="icon-192.svg">
+
+  <style>
+    /* Safe area support */
+    #app {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .app-header {
+      padding-top: env(safe-area-inset-top);
+      height: calc(var(--header-height) + env(safe-area-inset-top));
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ═══════════════════════════════════════
+       AUTH SCREEN
+  ═══════════════════════════════════════ -->
+  <div id="auth-screen" class="screen active">
+    <div class="auth-logo">
+      <div class="logo-icon">A</div>
+      <h1>AXIS AI Office</h1>
+      <p>Корпоративный AI-ассистент</p>
+    </div>
+
+    <div class="auth-card">
+      <h2>🔐 Подключение</h2>
+
+      <div class="form-group">
+        <label>Gateway URL</label>
+        <input
+          type="url"
+          id="gateway-url"
+          placeholder="https://your-domain.com или http://host:port"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Gateway Token</label>
+        <input
+          type="password"
+          id="gateway-token"
+          placeholder="Ваш токен доступа"
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button class="btn-primary" id="connect-btn" onclick="doConnect()">
+        Подключиться
+      </button>
+
+      <p class="auth-hint">
+        Данные сохраняются в localStorage на устройстве
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MAIN SCREEN
+  ═══════════════════════════════════════ -->
+  <div id="main-screen" class="screen">
+
+    <!-- Header -->
+    <div class="app-header">
+      <button class="header-menu-btn" onclick="toggleSidebar()" aria-label="Меню агентов">
+        ☰
+      </button>
+      <div class="header-info">
+        <div class="header-title" id="header-title">AXIS</div>
+        <div class="header-subtitle" id="header-subtitle">Выберите агента</div>
+      </div>
+      <div class="header-status">
+        <div class="status-dot" id="ws-status-dot"></div>
+        <span id="ws-status-text">—</span>
+      </div>
+    </div>
+
+    <!-- Tab Content: CHAT -->
+    <div class="tab-content active" id="tab-chat">
+      <div class="chat-messages" id="chat-messages">
+        <div class="message system">
+          <div class="message-bubble">👋 Добро пожаловать в AXIS AI Office. Выберите агента в меню слева.</div>
+        </div>
+      </div>
+
+      <div class="typing-indicator" id="typing-indicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+
+      <div class="chat-input-area">
+        <div class="chat-input-wrap">
+          <textarea
+            class="chat-input"
+            id="chat-input"
+            placeholder="Сообщение..."
+            rows="1"
+            maxlength="4000"
+          ></textarea>
+        </div>
+        <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Отправить">
+          ➤
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab Content: DASHBOARDS -->
+    <div class="tab-content" id="tab-dashboards">
+      <div class="dashboards-tab" id="dashboards-grid">
+
+        <div class="dashboard-card">
+          <div class="dashboard-card-header" onclick="toggleDashboard('office')">
+            <div class="dashboard-card-title">
+              <span class="dashboard-icon">🏢</span>
+              <span>Office</span>
+            </div>
+            <button class="dashboard-toggle-btn" id="toggle-office">▼</button>
+          </div>
+          <div class="dashboard-frame-wrap" id="frame-office">
+            <iframe id="iframe-office" loading="lazy" title="AXIS Office Dashboard"></iframe>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card-header" onclick="toggleDashboard('automation')">
+            <div class="dashboard-card-title">
+              <span class="dashboard-icon">⚙️</span>
+              <span>Automation</span>
+            </div>
+            <button class="dashboard-toggle-btn" id="toggle-automation">▼</button>
+          </div>
+          <div class="dashboard-frame-wrap" id="frame-automation">
+            <iframe id="iframe-automation" loading="lazy" title="AXIS Automation Dashboard"></iframe>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card-header" onclick="toggleDashboard('rituals')">
+            <div class="dashboard-card-title">
+              <span class="dashboard-icon">🔄</span>
+              <span>Rituals</span>
+            </div>
+            <button class="dashboard-toggle-btn" id="toggle-rituals">▼</button>
+          </div>
+          <div class="dashboard-frame-wrap" id="frame-rituals">
+            <iframe id="iframe-rituals" loading="lazy" title="AXIS Rituals Dashboard"></iframe>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="dashboard-card-header" onclick="toggleDashboard('index')">
+            <div class="dashboard-card-title">
+              <span class="dashboard-icon">📊</span>
+              <span>Index</span>
+            </div>
+            <button class="dashboard-toggle-btn" id="toggle-index">▼</button>
+          </div>
+          <div class="dashboard-frame-wrap" id="frame-index">
+            <iframe id="iframe-index" loading="lazy" title="AXIS Index Dashboard"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab Content: STATUS -->
+    <div class="tab-content" id="tab-status">
+      <div class="status-tab">
+
+        <div class="status-card">
+          <div class="status-card-title">🔌 Подключение</div>
+          <div class="status-row">
+            <span class="status-label">Gateway URL</span>
+            <span class="status-value" id="st-gateway-url" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;font-size:11px;">—</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Режим</span>
+            <span class="status-value" id="st-ws">—</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Агент</span>
+            <span class="status-value" id="st-agent">—</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Время подключения</span>
+            <span class="status-value" id="st-uptime">—</span>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-title">💚 Health Check</div>
+          <div class="status-row">
+            <span class="status-label">Статус</span>
+            <span class="status-value" id="health-status">—</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Версия</span>
+            <span class="status-value" id="health-version">—</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Модель</span>
+            <span class="status-value" id="health-model" style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;">—</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Последняя проверка</span>
+            <span class="status-value" id="health-time">—</span>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-title">📋 Raw JSON</div>
+          <pre class="status-json" id="health-json">Нажмите «Обновить» для получения данных</pre>
+        </div>
+
+        <button class="status-refresh-btn" onclick="fetchHealth()">
+          <span id="refresh-icon">🔄</span> Обновить статус
+        </button>
+
+        <button class="status-refresh-btn" onclick="showSettings()" style="margin-top:0; background:transparent; color:var(--text-secondary);">
+          ⚙️ Настройки подключения
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button class="nav-tab active" id="nav-chat" onclick="switchTab('chat')">
+        <span class="nav-icon">💬</span>
+        <span>Чат</span>
+      </button>
+      <button class="nav-tab" id="nav-dashboards" onclick="switchTab('dashboards')">
+        <span class="nav-icon">📊</span>
+        <span>Дашборды</span>
+      </button>
+      <button class="nav-tab" id="nav-status" onclick="switchTab('status')">
+        <span class="nav-icon">⚙️</span>
+        <span>Статус</span>
+      </button>
+    </nav>
+
+  </div><!-- /main-screen -->
+
+  <!-- ═══════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════ -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">A</div>
+        <div class="sidebar-logo-text">AXIS</div>
+      </div>
+      <div class="sidebar-gateway" id="sidebar-gateway-url">—</div>
+    </div>
+
+    <div class="sidebar-section-title">Агенты</div>
+
+    <div class="sidebar-agents" id="agents-list">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-logout" onclick="doLogout()">
+        🚪 Выйти
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container"></div>
+
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// AXIS PWA — Main Application Script (HTTP API Mode)
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Constants ───────────────────────────────────────────────
+const AGENTS = [
+  { id: 'main',       name: 'Main',       role: 'Главный агент',     emoji: '🤖' },
+  { id: 'devops',     name: 'Devops',     role: 'IT-Архитектор',     emoji: '🔧' },
+  { id: 'ops',        name: 'Ops',        role: 'Операционный',      emoji: '⚙️' },
+  { id: 'qc',         name: 'QC',         role: 'Контроль качества',  emoji: '✅' },
+  { id: 'tech',       name: 'Tech',       role: 'Технический',       emoji: '💻' },
+  { id: 'hr',         name: 'HR',         role: 'HR-агент',          emoji: '👥' },
+  { id: 'finance',    name: 'Finance',    role: 'Финансовый',        emoji: '💰' },
+  { id: 'shket',      name: 'Shket',      role: 'Шкет',              emoji: '🎯' },
+  { id: 'draftsman',  name: 'Draftsman',  role: 'Дизайн/документы',  emoji: '✏️' },
+  { id: 'strategy',   name: 'Strategy',   role: 'Стратег',           emoji: '🗺️' },
+  { id: 'coach',      name: 'Coach',      role: 'Коуч',              emoji: '🏆' },
+  { id: 'mobile',     name: 'Mobile',     role: 'Мобильный агент',   emoji: '📱' },
+];
+
+const DASHBOARDS = {
+  office:     { path: '/dashboard/office/', label: 'Office' },
+  automation: { path: '/dashboard/automation/', label: 'Automation' },
+  rituals:    { path: '/dashboard/rituals/', label: 'Rituals' },
+  index:      { path: '/dashboard/', label: 'Index' },
+};
+
+// ─── State ───────────────────────────────────────────────────
+let state = {
+  gatewayUrl: '',
+  token: '',
+  currentAgent: null,
+  httpReady: false,
+  connectTime: null,
+  isSending: false,
+};
+
+// ─── Init ─────────────────────────────────────────────────────
+function init() {
+  // Register SW
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(e => console.warn('[SW] Register failed:', e));
+  }
+
+  // Load saved credentials
+  const saved = loadCredentials();
+  if (saved.url && saved.token) {
+    state.gatewayUrl = saved.url;
+    state.token = saved.token;
+    startApp();
+  } else {
+    // Pre-fill URL with current domain
+    document.getElementById('gateway-url').value = window.location.origin;
+    showScreen('auth');
+  }
+
+  // Build agents list
+  buildAgentsList();
+
+  // Auto-resize textarea
+  const input = document.getElementById('chat-input');
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+  });
+
+  // Send on Enter (not Shift+Enter)
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+}
+
+// ─── Auth ─────────────────────────────────────────────────────
+async function doConnect() {
+  const urlEl = document.getElementById('gateway-url');
+  const tokenEl = document.getElementById('gateway-token');
+  const url = urlEl.value.trim().replace(/\/$/, '');
+  const token = tokenEl.value.trim();
+
+  if (!url) { showToast('Введите Gateway URL', 'error'); urlEl.focus(); return; }
+  if (!token) { showToast('Введите токен', 'error'); tokenEl.focus(); return; }
+
+  // Validate URL
+  try { new URL(url); } catch {
+    showToast('Неверный URL', 'error'); urlEl.focus(); return;
+  }
+
+  const btn = document.getElementById('connect-btn');
+  btn.disabled = true;
+  btn.textContent = 'Проверка...';
+
+  // Test connection via /v1/chat/completions
+  try {
+    const res = await fetch(url + '/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify({
+        model: 'main',
+        messages: [{ role: 'user', content: 'ping' }],
+        stream: false,
+        max_tokens: 5
+      })
+    });
+
+    if (!res.ok && res.status !== 200) {
+      const errText = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status}: ${errText.slice(0, 100)}`);
+    }
+
+    state.gatewayUrl = url;
+    state.token = token;
+    saveCredentials(url, token);
+    startApp();
+
+  } catch(e) {
+    showToast('Ошибка подключения: ' + e.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Подключиться';
+  }
+}
+
+function doLogout() {
+  if (!confirm('Выйти и очистить данные?')) return;
+  localStorage.removeItem('axis_gateway_url');
+  localStorage.removeItem('axis_gateway_token');
+  clearChat();
+  state.gatewayUrl = '';
+  state.token = '';
+  state.currentAgent = null;
+  state.httpReady = false;
+  closeSidebar();
+  showScreen('auth');
+  document.getElementById('gateway-token').value = '';
+}
+
+function showSettings() {
+  document.getElementById('gateway-url').value = state.gatewayUrl;
+  document.getElementById('gateway-token').value = state.token;
+  showScreen('auth');
+}
+
+// ─── Credentials ─────────────────────────────────────────────
+function saveCredentials(url, token) {
+  try {
+    localStorage.setItem('axis_gateway_url', url);
+    localStorage.setItem('axis_gateway_token', token);
+  } catch(e) {}
+}
+
+function loadCredentials() {
+  return {
+    url: localStorage.getItem('axis_gateway_url') || '',
+    token: localStorage.getItem('axis_gateway_token') || ''
+  };
+}
+
+// ─── App Start ────────────────────────────────────────────────
+function startApp() {
+  state.httpReady = true;
+  state.connectTime = Date.now();
+  showScreen('main');
+  setHTTPStatus('ready');
+  updateStatusTab();
+
+  // Update sidebar URL
+  document.getElementById('sidebar-gateway-url').textContent = state.gatewayUrl;
+
+  // Select main agent by default
+  if (!state.currentAgent) {
+    selectAgent('main');
+  }
+
+  // Update dashboard URLs
+  updateDashboardUrls();
+}
+
+// ─── Screens ──────────────────────────────────────────────────
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(name + '-screen').classList.add('active');
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+
+  if (name === 'status') {
+    updateStatusTab();
+  }
+}
+
+// ─── Agents ───────────────────────────────────────────────────
+function buildAgentsList() {
+  const list = document.getElementById('agents-list');
+  list.innerHTML = AGENTS.map(a => `
+    <div class="agent-item" id="agent-item-${a.id}" onclick="selectAgent('${a.id}')">
+      <div class="agent-avatar">${a.emoji}</div>
+      <div>
+        <div class="agent-name">${a.name}</div>
+        <div class="agent-role">${a.role}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectAgent(agentId) {
+  const agent = AGENTS.find(a => a.id === agentId);
+  if (!agent) return;
+
+  // Update active state
+  document.querySelectorAll('.agent-item').forEach(el => el.classList.remove('active'));
+  const item = document.getElementById('agent-item-' + agentId);
+  if (item) item.classList.add('active');
+
+  state.currentAgent = agentId;
+
+  // Update header
+  document.getElementById('header-title').textContent = `${agent.emoji} ${agent.name}`;
+  document.getElementById('header-subtitle').textContent = agent.role;
+
+  // Clear chat
+  clearChat();
+  addSystemMessage(`Агент: ${agent.emoji} ${agent.name} — HTTP Mode`);
+
+  closeSidebar();
+  updateStatusTab();
+}
+
+// ─── HTTP Status ──────────────────────────────────────────────
+function setHTTPStatus(status) {
+  const dot = document.getElementById('ws-status-dot');
+  const text = document.getElementById('ws-status-text');
+
+  dot.className = 'status-dot';
+
+  if (status === 'ready') {
+    dot.classList.add('connected');
+    text.textContent = 'HTTP';
+  } else if (status === 'sending') {
+    dot.classList.add('connecting');
+    text.textContent = '...';
+  } else if (status === 'error') {
+    dot.classList.add('error');
+    text.textContent = 'Ошибка';
+  } else {
+    text.textContent = '—';
+  }
+}
+
+// ─── Chat ─────────────────────────────────────────────────────
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || state.isSending) return;
+
+  if (!state.httpReady || !state.gatewayUrl) {
+    showToast('Нет подключения', 'error');
+    return;
+  }
+
+  // Add user message to UI
+  addMessage('user', text);
+
+  // Clear input
+  input.value = '';
+  input.style.height = 'auto';
+
+  // Show typing
+  showTyping();
+  setHTTPStatus('sending');
+  state.isSending = true;
+
+  try {
+    const response = await fetch(state.gatewayUrl + '/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + state.token
+      },
+      body: JSON.stringify({
+        model: state.currentAgent,
+        messages: [
+          { role: 'user', content: text }
+        ],
+        stream: false
+      })
+    });
+
+    if (!response.ok) {
+      const errText = await response.text().catch(() => '');
+      throw new Error(`HTTP ${response.status}: ${errText.slice(0, 200)}`);
+    }
+
+    const data = await response.json();
+    const reply = data.choices?.[0]?.message?.content || JSON.stringify(data);
+    hideTyping();
+    addMessage('assistant', reply);
+    setHTTPStatus('ready');
+
+  } catch(e) {
+    hideTyping();
+    setHTTPStatus('error');
+    addSystemMessage('⚠️ Ошибка: ' + e.message);
+    showToast('Ошибка запроса', 'error');
+    setTimeout(() => setHTTPStatus('ready'), 3000);
+  } finally {
+    state.isSending = false;
+  }
+}
+
+function addMessage(role, text, sender, prepend = false) {
+  const container = document.getElementById('chat-messages');
+  const el = document.createElement('div');
+  // Map 'assistant' → 'bot' for CSS class
+  const cssRole = role === 'assistant' ? 'bot' : role;
+  el.className = `message ${cssRole}`;
+
+  const time = new Date().toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
+
+  let html = '';
+  if (cssRole === 'bot' && sender) {
+    html += `<div class="message-sender">${escHtml(sender)}</div>`;
+  }
+  html += `<div class="message-bubble">${formatText(text)}</div>`;
+  html += `<div class="message-time">${time}</div>`;
+
+  el.innerHTML = html;
+
+  if (prepend) {
+    container.insertBefore(el, container.firstChild);
+  } else {
+    container.appendChild(el);
+    scrollChat();
+  }
+}
+
+function addSystemMessage(text) {
+  addMessage('system', text);
+}
+
+function clearChat() {
+  document.getElementById('chat-messages').innerHTML = '';
+}
+
+function scrollChat() {
+  const c = document.getElementById('chat-messages');
+  requestAnimationFrame(() => { c.scrollTop = c.scrollHeight; });
+}
+
+function showTyping() {
+  document.getElementById('typing-indicator').classList.add('visible');
+  scrollChat();
+}
+
+function hideTyping() {
+  document.getElementById('typing-indicator').classList.remove('visible');
+}
+
+// ─── Dashboards ───────────────────────────────────────────────
+function updateDashboardUrls() {
+  const base = state.gatewayUrl;
+  Object.entries(DASHBOARDS).forEach(([key, dash]) => {
+    const iframe = document.getElementById('iframe-' + key);
+    if (iframe && !iframe.src) {
+      // Don't load until opened
+      iframe.dataset.src = base + dash.path;
+    }
+  });
+}
+
+function toggleDashboard(key) {
+  const urls = {
+    'office': '/office.html',
+    'automation': '/automation.html',
+    'rituals': '/rituals.html',
+    'index': '/index.html'
+  };
+  const url = urls[key];
+  if (url) {
+    window.open(window.location.origin + url, '_blank');
+    return;
+  }
+  const wrap = document.getElementById('frame-' + key);
+  const btn = document.getElementById('toggle-' + key);
+  const isOpen = wrap.classList.contains('open');
+
+  if (!isOpen) {
+    wrap.classList.add('open');
+    btn.textContent = '▲';
+
+    const iframe = document.getElementById('iframe-' + key);
+    if (iframe && !iframe.src && iframe.dataset.src) {
+      iframe.src = iframe.dataset.src;
+    }
+  } else {
+    wrap.classList.remove('open');
+    btn.textContent = '▼';
+  }
+}
+
+// ─── Status ───────────────────────────────────────────────────
+function updateStatusTab() {
+  document.getElementById('st-gateway-url').textContent = state.gatewayUrl || '—';
+  document.getElementById('st-agent').textContent = state.currentAgent || '—';
+
+  const wsEl = document.getElementById('st-ws');
+  wsEl.className = 'status-value';
+  if (state.httpReady) {
+    wsEl.classList.add('ok');
+    wsEl.textContent = '✅ HTTP Mode';
+  } else {
+    wsEl.textContent = '⭕ Не подключено';
+  }
+
+  if (state.connectTime) {
+    const secs = Math.floor((Date.now() - state.connectTime) / 1000);
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60);
+    const s = secs % 60;
+    document.getElementById('st-uptime').textContent =
+      [h > 0 ? h + 'ч' : null, m > 0 ? m + 'м' : null, s + 'с'].filter(Boolean).join(' ');
+  }
+}
+
+async function fetchHealth() {
+  if (!state.gatewayUrl) { showToast('Нет подключения', 'error'); return; }
+
+  const icon = document.getElementById('refresh-icon');
+  icon.className = 'spin';
+  icon.textContent = '🔄';
+
+  try {
+    const res = await fetch(state.gatewayUrl + '/health', {
+      headers: { 'Authorization': 'Bearer ' + state.token }
+    });
+    const json = await res.json();
+
+    document.getElementById('health-status').textContent = json.status || 'ok';
+    document.getElementById('health-status').className = 'status-value ' + (json.status === 'ok' ? 'ok' : 'warn');
+    document.getElementById('health-version').textContent = json.version || '—';
+    document.getElementById('health-model').textContent = json.model || json.default_model || '—';
+    document.getElementById('health-time').textContent = new Date().toLocaleTimeString('ru');
+    document.getElementById('health-json').textContent = JSON.stringify(json, null, 2);
+
+    showToast('Health OK', 'success');
+  } catch(e) {
+    document.getElementById('health-status').textContent = 'Ошибка';
+    document.getElementById('health-status').className = 'status-value err';
+    document.getElementById('health-json').textContent = 'Ошибка: ' + e.message;
+    showToast('Ошибка health check', 'error');
+  } finally {
+    icon.className = '';
+    icon.textContent = '🔄';
+  }
+}
+
+// ─── Sidebar ──────────────────────────────────────────────────
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const isOpen = sidebar.classList.contains('open');
+
+  if (isOpen) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+  }
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+// ─── Toast ────────────────────────────────────────────────────
+function showToast(msg, type = 'info', durationMs = 2500) {
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => {
+    el.style.opacity = '0';
+    el.style.transition = 'opacity 0.3s';
+    setTimeout(() => el.remove(), 300);
+  }, durationMs);
+}
+
+// ─── Utils ────────────────────────────────────────────────────
+function uuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = Math.random() * 16 | 0;
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatText(str) {
+  // Basic markdown-like: preserve line breaks, escape HTML
+  return escHtml(str).replace(/\n/g, '<br>');
+}
+
+// ─── Start ────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>

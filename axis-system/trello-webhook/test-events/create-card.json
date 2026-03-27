@@ -1,0 +1,33 @@
+{
+  "action": {
+    "id": "test123456789",
+    "idMemberCreator": "5b0b621494516d1ba0442af7",
+    "type": "createCard",
+    "date": "2026-03-02T05:00:00.000Z",
+    "data": {
+      "card": {
+        "id": "test-card-001",
+        "name": "🧪 Test Card Created via Webhook",
+        "idShort": 999
+      },
+      "list": {
+        "id": "697ea1c3b95f7266bd54fa54",
+        "name": "Очередь"
+      },
+      "board": {
+        "id": "697ea1c3b95f7266bd54f96b",
+        "name": "C1 C2 — Концепция и Визуализация",
+        "shortLink": "7ByHOqVf"
+      }
+    },
+    "memberCreator": {
+      "id": "5b0b621494516d1ba0442af7",
+      "username": "ruslan_archviz",
+      "fullName": "Ruslan"
+    }
+  },
+  "model": {
+    "id": "697ea1c3b95f7266bd54f96b",
+    "name": "C1 C2 — Концепция и Визуализация"
+  }
+}

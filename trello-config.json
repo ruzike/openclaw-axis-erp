@@ -1,0 +1,14 @@
+{
+  "api": {
+    "key": "YOUR_TRELLO_API_KEY",
+    "token": "YOUR_TRELLO_API_TOKEN"
+  },
+  "boards": {
+    "project1": "BOARD_ID_1",
+    "project2": "BOARD_ID_2"
+  },
+  "members": {
+    "MEMBER1_TELEGRAM_ID": "trello_username1",
+    "MEMBER2_TELEGRAM_ID": "trello_username2"
+  }
+}
