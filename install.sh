@@ -54,6 +54,79 @@ print_step() {
 # ── START ──────────────────────────────────────────────────
 print_header
 
+# ── Определяем режим ──────────────────────────────────────
+INSTALL_DIR="${HOME}/openclaw"
+OPENCLAW_DIR="${HOME}/.openclaw"
+CONFIG_EXISTS=false
+AGENTS_EXIST=false
+
+[ -f "${OPENCLAW_DIR}/openclaw.json" ] && CONFIG_EXISTS=true
+[ -d "${INSTALL_DIR}/agents" ] && AGENTS_EXIST=true
+
+if $CONFIG_EXISTS || $AGENTS_EXIST; then
+  echo -e "${YELLOW}⚠️  Обнаружена существующая установка AXIS:${NC}"
+  $CONFIG_EXISTS && echo -e "   ${GREEN}✓${NC} openclaw.json найден"
+  $AGENTS_EXIST  && echo -e "   ${GREEN}✓${NC} Агенты найдены в ${INSTALL_DIR}/agents"
+  echo ""
+  echo -e "Выбери режим:"
+  echo -e "  ${BOLD}1${NC} — Полная установка (перезапишет всё)"
+  echo -e "  ${BOLD}2${NC} — Обновить только агентов (SOUL.md, AGENTS.md, TOOLS.md) — конфиг не трогать"
+  echo -e "  ${BOLD}3${NC} — Добавить только новых агентов (существующих не трогать)"
+  echo -e "  ${BOLD}4${NC} — Выход"
+  echo ""
+  read -rp "Введи номер [1-4]: " MODE
+  echo ""
+else
+  MODE="1"
+fi
+
+case "$MODE" in
+  2)
+    echo -e "${CYAN}Режим: Обновление промптов агентов${NC}"
+    echo ""
+    for agent_dir in ./agents/*/; do
+      agent=$(basename "$agent_dir")
+      target="${INSTALL_DIR}/agents/${agent}"
+      if [ -d "$target" ]; then
+        for f in SOUL.md AGENTS.md TOOLS.md IDENTITY.md HEARTBEAT.md; do
+          [ -f "${agent_dir}${f}" ] && cp "${agent_dir}${f}" "${target}/${f}"
+        done
+        echo -e "  ${GREEN}✓${NC} ${agent} — промпты обновлены (MEMORY.md и memory/ сохранены)"
+      else
+        cp -r "$agent_dir" "${INSTALL_DIR}/agents/"
+        echo -e "  ${BLUE}+${NC} ${agent} — добавлен новый агент"
+      fi
+    done
+    echo ""
+    echo -e "${GREEN}✅ Промпты агентов обновлены. openclaw.json не изменён.${NC}"
+    echo -e "Перезапусти OpenClaw: ${CYAN}openclaw restart${NC}"
+    exit 0
+    ;;
+  3)
+    echo -e "${CYAN}Режим: Добавление новых агентов${NC}"
+    echo ""
+    for agent_dir in ./agents/*/; do
+      agent=$(basename "$agent_dir")
+      target="${INSTALL_DIR}/agents/${agent}"
+      if [ -d "$target" ]; then
+        echo -e "  ${YELLOW}~${NC} ${agent} — уже существует, пропускаю"
+      else
+        cp -r "$agent_dir" "${INSTALL_DIR}/agents/"
+        echo -e "  ${BLUE}+${NC} ${agent} — добавлен"
+      fi
+    done
+    echo ""
+    echo -e "${GREEN}✅ Новые агенты добавлены.${NC}"
+    echo -e "Добавь их в openclaw.json вручную или запусти режим 1 для полной переустановки."
+    exit 0
+    ;;
+  4)
+    echo "Выход."; exit 0 ;;
+  *)
+    echo -e "${CYAN}Режим: Полная установка${NC}"
+    ;;
+esac
+
 echo -e "Этот скрипт настроит всех 12 агентов AXIS на твоём сервере."
 echo -e "Занимает около ${BOLD}5-10 минут${NC}."
 echo ""
